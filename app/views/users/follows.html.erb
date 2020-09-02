@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div class="jumbotron mb-0 text-white" style="background:url(/sky_profile.jpg);background-size:cover;height: 320px;">
+      <div class="media">
+        <% if @user.image_name %>
+          <img src="<%= "/user_images/#{@user.image_name}" %>" style="max-width: 90px; height: auto;">
+        <% else %>
+          <span class="fas fa-user fa-9x" style="color: grey;background-color:#DDDDDD;"></span>
+        <% end %>
+        <div class="media-body ml-5">
+          <h3 class="mb-4"><%= @user.name %></h3>
+          <h5 class="mb-4"><%= @user.self_intro %></h5>
+          <h5 class="mb-4"><%= @user.email %></h5>
+          <% if @current_user.id == @user.id %>
+            <%= link_to("編集","/users/#{@user.id}/edit", {class: "text-white"}) %>
+          <% end %>
+          <div class="mt">
+            <% if @current_user.id != @user.id %>
+              <% if Follow.find_by(user_id: @current_user.id, followed_id: @user.id) %>
+                <%= button_to "フォロー中", follow_destroy_path, {method: :post, params: {id: @user.id}, class:"btn btn-primary"} %>
+              <% else %>
+                <%= button_to "フォローする", follow_create_path, {method: :post, params: {id: @user.id}, class:"btn btn-secondary"} %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+      <ul class="navbar-nav w-100 nav-justified flex-column flex-sm-row">
+        <li class="nav-item"><%= link_to("投稿", "/users/#{@user.id}", {class: "nav-link"}) %></li>
+        <li class="nav-item"><%= link_to("いいね", "/users/#{@user.id}/likes", {class: "nav-link"}) %></li>
+        <li class="nav-item active"><%= link_to("フォロー中", "/users/#{@user.id}/follows", {class: "nav-link"}) %></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-8">
+    <% if Follow.where(user_id: @user.id) %>
+    <% @posts.each do |post| %>
+      <% if post %>
+      <div class="media border p-3">
+        <% if post.user.image_name %>
+          <img class="mr-3" src="<%= "/user_images/#{post.user.image_name}" %>" style="max-width: 40px; height: auto;">
+        <% else %>
+          <span class="fas fa-user fa-3x mr-3" style="color: grey;background-color:#DDDDDD;"></span>
+        <% end %>
+        <div class="media-body">
+          <h6><%= link_to(post.user.name, "/users/#{post.user.id}") %></h6>
+          <%= link_to(post.content, "/posts/#{post.id}", {class: "text-dark"}) %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

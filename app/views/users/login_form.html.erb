@@ -1,0 +1,28 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-5 mt-3 mb-3">
+    <h1 class="text-black-50 text-left">ログイン</h1>
+  </div>
+</div>
+<% if @err_msg %>
+<div class="row justify-content-center">
+  <div class="col-5">
+    <ul class="list-unstyled alert-danger p-1 pl-2">
+      <li>
+        <%= @err_msg %>
+      </li>
+    </ul>
+  </div>
+</div>
+<% end %>
+<div class="row justify-content-center mt-3">
+  <div class="col-4">
+    <%= form_tag("/login") do %>
+    <div class="form-group">
+      <label for="email">メールアドレス</label>
+      <input class="form-control mb-4" type="email" name='email' value="<%= @email %>" id="email">
+      <label for="passwd">パスワード</label>
+      <input class="form-control mb-4" type="password" name="password" id="passwd"> 
+      <input class="btn btn-primary" type="submit" value="ログイン">
+    <% end %>
+  </div>
+</div>

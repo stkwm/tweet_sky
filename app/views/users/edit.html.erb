@@ -1,0 +1,39 @@
+<div class="row justify-content-center mt-4">
+  <div class="col-5 mt-3 mb-3">
+    <h1 class="text-black-50 text-left">アカウント編集</h1>
+  </div>
+</div>
+<% @user.errors.full_messages.each do |error_message| %>
+<div class="row justify-content-center">
+  <div class="col-4">
+    <ul class="list-unstyled alert-danger p-1 pl-2">
+      <li>
+        <%= error_message %>
+      </li>
+    </ul>
+</div>
+<% end %>
+<div class="row justify-content-center mt-3">
+  <div class="col-4">
+    <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
+    <div class="form-group">
+      <label for="user_name">ユーザー名</label>
+      <input class="form-control mb-4" type="text" name="name" value="<%= @user.name %>" id="user_id">
+      <label for="email">メールアドレス</label>
+      <input class="form-control mb-4" type="text" name="email" value="<%= @user.email %>" id="email">
+      <label for="image">プロフィール画像</label>
+      <input class="mb-4" type="file" name="image" value="<%= @user.image_name %>" id="image">
+      <label for="msg">ひとことメッセージ</label>
+      <input class="form-control mb-4" type="text" name="self_intro" value="<%= @user.self_intro %>" placeholder="２０文字以内で入力してください" id="msg" row="2">
+      <input class="btn btn-primary" type="submit" value="保存">
+    </div>
+    <% end %>
+  </div>
+</div>
+  <!--<#%= form_for @user,url: user_update_path do |u| %>-->
+  <!--  <p>ユーザー名</p>-->
+  <!--  <#%= u.text_field :name %>-->
+  <!--  <p>メアド</p>-->
+  <!--  <#%= u.text_field :email %>-->
+  <!--  <#%= u.submit '保存' %>-->
+  <!--<#% end %>-->
