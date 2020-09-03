@@ -1,41 +1,40 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-8 text-center">
-    <div class="card">
-      <div cslass="card-header">
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-8  border pt-3 pl-3 pr-3 pb-2 rounded" style="min-height:180px;">
+      <div class="media d-flex align-items-center">
         <% if @user.image_name %>
-          <img src="<%= "/user_images/#{@user.image_name}" %>" style="width: 40px; height: auto;">
+          <img src="<%= "/user_images/#{@user.image_name}" %>" style="width: 25px; height: auto;">
         <% else %>
           <span class="fas fa-user fa-3x" style="color: grey;"></span>
         <% end %>
-        <span><%= link_to(@user.name, "/users/#{@user.id}") %></span>
+        <div class="media-body ml-3">
+          <h5><%= link_to(@user.name, "/users/#{@user.id}") %></h5>
+        </div>
       </div>
-      <div class="card-body">
-        
+      <div class="mt-3">
+        <h5><%= @post.content %></h5>
+      </div>
+      <div class="d-flex justify-content-end align-items-end" style="height:50px">
+        <div class="mr-3"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></div>
+        <div>
+        <% if Like.find_by(post_id: @post.id, user_id: @current_user.id) %>
+          <%= link_to("/likes/#{@post.id}/destroy", {method: "post", class: "text-decoration-none"}) do %>
+          <span class="fas fa-heart" style="color: red;"></span>
+        <% end %>
+        <% else %>
+        <%= link_to("/likes/#{@post.id}/create", {method: "post", class: "text-decoration-none"}) do %>
+          <span class="fas fa-heart" style="color: grey;"></span>
+        <% end %>
+        <% end %>
+          <span class="mr-3"><%= @likes_count %></span>
+        </div>
+        <div>
+        <% if @current_user.id == @user.id %>
+          <%= link_to("編集", "/posts/#{@post.id}/edit", {class: "mr-2"}) %>
+          <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post", class: "mr-2"}) %>
+        <% end %>
+        </div>
       </div>
     </div>
-      
-</div>
-  
-  <div>
-    <%= @post.content %>
-    <%= @post.created_at %>
   </div>
-  
-</div>
-<div>
-  <% if Like.find_by(post_id: @post.id, user_id: @current_user.id) %>
-    <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
-      <span class="fas fa-heart" style="color: red;"></span>
-    <% end %>
-    <% else %>
-    <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
-      <span class="fas fa-heart" style="color: grey;"></span>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <% if @current_user.id == @user.id %>
-    <%= link_to("編集", "/posts/#{@post.id}/edit") %>
-    <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
-  <% end %>
-</div>
+</div> 

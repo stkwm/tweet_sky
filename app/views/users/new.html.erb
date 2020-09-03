@@ -1,32 +1,34 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-5 mt-3 mb-3">
-    <h1 class="text-black-50 text-left">ユーザー登録</h1>
-  </div>
-</div>
-<% @user.errors.full_messages.each do |error_message| %>
-<div class="row justify-content-center">
-  <div class="col-4">
-    <ul class="list-unstyled alert-danger p-1 pl-2">
-      <li>
-        <%= error_message %>
-      </li>
-    </ul>
-  </div>
-</div>
-<% end %>
-<div class="row justify-content-center mt-3">
-  <div class="col-4">
-    <%= form_tag("/users/create") do %>
-    <div class="form-group">
-      <label for="user_name">ユーザー名</label>
-      <input class="form-control mb-4" type="text" name="name" value="<%= @user.name %>" placeholder="例）太郎" id="user_name">
-      <label for="email">メールアドレス</label>
-      <input class="form-control mb-4" type="text" name="email" value="<%= @user.email %>" placeholder="例）taro@app.com" id="email">
-      <label for="passwd">パスワード</label>
-      <input class="form-control mb-1" type="password" name="password" id="passwd">
-      <small class="form-text mb-4">※６文字以上で入力してください</small>
-      <input class="btn btn-primary" type="submit" value="新規登録">
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-5 mt-3 mb-3">
+      <h1 class="text-black-50 text-left">ユーザー登録</h1>
     </div>
-    <% end %>
+  </div>
+  <% @user.errors.full_messages.each do |error_message| %>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <ul class="list-unstyled alert-danger p-1 pl-2">
+        <li>
+          <%= error_message %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+  <div class="row justify-content-center mt-3">
+    <div class="col-4">
+      <%= form_tag("/users/create") do %>
+      <div class="form-group">
+        <label for="user_name">ユーザー名</label>
+        <input class="form-control mb-4" type="text" name="name" value="<%= @user.name %>" placeholder="例）太郎" id="user_name">
+        <label for="email">メールアドレス</label>
+        <input class="form-control mb-4" type="text" name="email" value="<%= @user.email %>" placeholder="例）taro@app.com" id="email">
+        <label for="passwd">パスワード</label>
+        <input class="form-control mb-1" type="password" name="password" id="passwd">
+        <small class="form-text mb-4">※６文字以上で入力してください</small>
+        <input class="btn btn-primary" type="submit" value="新規登録">
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>

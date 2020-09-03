@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @posts = Post.where(user_id: params[:id]).order(created_at: :desc)
+    @follower_count = Follow.where(followed_id: params[:id]).count
+    @follow_count = Follow.where(user_id: params[:id]).count
   end
   
   def edit
@@ -44,6 +46,8 @@ class UsersController < ApplicationController
   def likes 
     @user = User.find_by(id: params[:id])
     @likes = Like.where(user_id: params[:id]).order(created_at: :desc)
+    @follower_count = Follow.where(followed_id: params[:id]).count
+    @follow_count = Follow.where(user_id: params[:id]).count
   end
   
   def follows
@@ -52,6 +56,8 @@ class UsersController < ApplicationController
     @follows.each do |follow|
       @posts = Post.where(user_id: follow.followed_id).order(created_at: :desc)
     end
+    @follower_count = Follow.where(followed_id: params[:id]).count
+    @follow_count = Follow.where(user_id: params[:id]).count
   end
   
   def new

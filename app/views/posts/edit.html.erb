@@ -1,26 +1,28 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-8 mt-3 mb-3">
-    <h1 class="text-black-50 text-left">編集する</h1>
-  </div>
-</div>
-<% @post.errors.full_messages.each do |error_message| %>
-<div class="row justify-content-center">
-  <div class="col-8">
-    <ul class="list-unstyled alert-danger p-1 pl-3 mb-1">
-      <li>
-        <%= error_message %>
-      </li>
-    </ul>
-  </div>
-</div>
-<% end %>
-<div class="row justify-content-center mt-3">
-  <div class="col-8">
-    <%= form_tag("/posts/#{@post.id}/update") do %>
-    <div class="form-group mb-3">
-      <textarea rows="6" class="form-control" name="content"><%= @post.content %></textarea>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-8 mt-3 mb-3">
+      <h1 class="text-black-50 text-left">編集する</h1>
     </div>
-    <input class="btn btn-primary btn-block" type="submit" value="保存">
-    <% end %>
+  </div>
+  <% @post.errors.full_messages.each do |error_message| %>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <ul class="list-unstyled alert-danger p-1 pl-3 mb-1">
+        <li>
+          <%= error_message %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+  <div class="row justify-content-center mt-3">
+    <div class="col-8">
+      <%= form_tag("/posts/#{@post.id}/update") do %>
+      <div class="form-group mb-3">
+        <textarea rows="6" class="form-control" name="content"><%= @post.content %></textarea>
+      </div>
+      <input class="btn btn-primary btn-block" type="submit" value="保存">
+      <% end %>
+    </div>
   </div>
 </div>
