@@ -1,20 +1,22 @@
-<div class="row justify-content-center">
-  <div class="col-8 text-left">
-    <h1 class="mt-4 text-black-50 text-left">投稿一覧</h1>
-  </div>
-  <div class="col-8 mt-3">
-    <% @posts.each do |post| %>
-      <div class="media border p-3">
-        <% if post.user.image_name %>
-          <img class="mr-3" src="<%= "/user_images/#{post.user.image_name}" %>" style="max-width: 40px; height: auto;">
-        <% else %>
-          <span class="fas fa-user fa-3x mr-3" style="color: grey;"></span>
-        <% end %>
-        <div class="media-body">
-          <h6><%= link_to(post.user.name, "/users/#{post.user.id}") %></h6>
-          <%= link_to(post.content, "/posts/#{post.id}", {class: "text-dark"}) %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-8 text-left">
+      <h1 class="mt-4 text-black-50 text-left">投稿一覧</h1>
+    </div>
+    <div class="col-8 mt-3">
+      <% @posts.each do |post| %>
+        <div class="media border p-3">
+          <% if post.user.image_name %>
+            <img class="mr-3" src="<%= "/user_images/#{post.user.image_name}" %>" style="max-width: 40px; height: auto;">
+          <% else %>
+            <span class="fas fa-user fa-3x mr-3" style="color: grey;"></span>
+          <% end %>
+          <div class="media-body">
+            <h6><%= link_to(post.user.name, "/users/#{post.user.id}") %></h6>
+            <%= link_to(post.content, "/posts/#{post.id}", {class: "text-dark"}) %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

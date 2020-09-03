@@ -1,22 +1,24 @@
-<div class="row justify-content-center mt-4">
-  <div class="col-8 text-center mt-3 mb-3">
-    <h1 class="text-black-50 text-left">投稿する</h1>
-  </div>
-  <% @post.errors.full_messages.each do |error_message| %>
-  <div class="col-8">
-    <ul class="list-unstyled">
-      <li class="alert-danger p-1 pl-3 mb-1">
-        <%= error_message %>
-      </li>
-    </ul>
-  </div>
-  <% end %>
-  <div class="col-8">
-    <%= form_tag("/posts/create") do %>
-    <div class="form-group mb-3">
-      <textarea rows="6" class="form-control" name="content" placeholder="投稿内容は200字以内で入力してください"><%= @post.content %></textarea>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-8 text-center mt-3 mb-3">
+      <h1 class="text-black-50 text-left">投稿する</h1>
     </div>
-    <button class="btn btn-primary btn-block" type="submit">投稿する</button>
+    <% @post.errors.full_messages.each do |error_message| %>
+    <div class="col-8">
+      <ul class="list-unstyled">
+        <li class="alert-danger p-1 pl-3 mb-1">
+          <%= error_message %>
+        </li>
+      </ul>
+    </div>
     <% end %>
+    <div class="col-8">
+      <%= form_tag("/posts/create") do %>
+      <div class="form-group mb-3">
+        <textarea rows="6" class="form-control" name="content" placeholder="投稿内容は200字以内で入力してください"><%= @post.content %></textarea>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">投稿する</button>
+      <% end %>
+    </div>
   </div>
 </div>
