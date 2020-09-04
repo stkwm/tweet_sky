@@ -17,9 +17,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <% if @current_user %>
-          <%= link_to("Tweet_app", "/posts/index", {class: "navbar-brand"}) %>
+          <%= link_to("Tweet_sky", "/posts/index", {class: "navbar-brand"}) %>
         <% else %>
-          <%= link_to("Tweet_app", "/", {class: "navbar-brand"}) %>
+          <%= link_to("Tweet_sky", "/", {class: "navbar-brand"}) %>
         <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
               </li>
             <% else %>
               <li class="nav-item mr-1">
-                <%= link_to("Tweet_appとは", "/about", {class: "nav-link"}) %>
+                <%= link_to("Tweet_skyとは", "#", {class: "nav-link"}) %>
               </li>
               <li class="nav-item mr-1">
                 <%= link_to("新規登録", "/signup", {class: "nav-link"}) %>
