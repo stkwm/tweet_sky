@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   
   def follows
     @user = User.find_by(id: params[:id])
-    @follows = Follow.where(user_id: @current_user.id)
+    @follows = Follow.where(user_id: @user.id)
     @follows.each do |follow|
       @posts = Post.where(user_id: follow.followed_id).order(created_at: :desc)
     end
