@@ -101,4 +101,9 @@ class UsersController < ApplicationController
     flash[:notice] = "ログアウトしました"
     redirect_to("/")
   end
+  
+  def search
+    @search_results = User.where("name LIKE ?", "%#{params[:search_word]}%")
+  end
+  
 end

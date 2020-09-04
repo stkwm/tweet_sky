@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'login' => 'users#login'
   post 'logout' => 'users#logout'
   get 'users/index' => 'users#index'
+  get '/users/search_result' => 'users#search'
   get 'users/:id' => 'users#show'
   get 'users/:id/edit' => 'users#edit'
   post 'users/:id/update' => 'users#update',as: :user_update
