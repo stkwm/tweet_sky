@@ -48,7 +48,7 @@
       </nav>
     </div>
     <div class="col-8">
-      <% if Follow.where(user_id: @user.id) %>
+      <% if Follow.where(user_id: @user.id) && @posts %>
       <% @posts.each do |post| %>
         <% if post %>
         <div class="media border p-3">
