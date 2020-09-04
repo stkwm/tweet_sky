@@ -40,7 +40,15 @@
                 <%= link_to("新規投稿", "/posts/new", {class: "nav-link"}) %>
               </li>
               <li class="nav-item mr-1">
-                <%= link_to("ログアウト", "/logout", {method: "post", class: "nav-link"}) %>
+                <%= form_tag("/users/search_result", method: :get, class: "nav-link") do %>
+                  <input type="text" name="search_word" placeholder=" 検索" style="background-color:#343a40;border: solid 1px rgb(255 255 255 / 50%);color:white;">
+                  <button type="submit" class="fas fa-search pt-1 pb-1" style="background-color:#343a40;color:rgb(255 255 255 / 50%);"></button>
+                <% end %>
+              </li>
+              <li class="nav-item mr-2">
+                <%= form_tag("/logout", method: :post, class: "nav-link") do %>
+                <button type="submit" style="background-color:#343a40;color:rgb(255 255 255 / 50%);">ログアウト</button>
+                <% end %>
               </li>
             <% else %>
               <li class="nav-item mr-1">
