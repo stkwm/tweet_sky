@@ -104,6 +104,7 @@ class UsersController < ApplicationController
   
   def search
     @search_results = User.where("name LIKE ?", "%#{params[:search_word]}%")
+    @search_results_count = User.where("name LIKE ?", "%#{params[:search_word]}%").count
   end
   
 end
